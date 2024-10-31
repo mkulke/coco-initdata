@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-cc
+  name: nginx-cc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-cc
+  template:
+    metadata:
+      labels:
+        app: nginx-cc
+    spec:
+      runtimeClassName: kata-remote
+      containers:
+      - image: "nginx@sha256:e56797eab4a5300158cc015296229e13a390f82bfc88803f45b08912fd5e3348"
+        name: nginx
+        imagePullPolicy: Always
